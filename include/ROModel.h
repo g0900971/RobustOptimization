@@ -48,9 +48,13 @@ class LPVarArray;
 template<class T>
 class Expr;
 
-
+/*
 typedef boost::unordered_map< ROUnIndex, boost::shared_ptr<ROExpr> > ROUVSubMap;
 typedef boost::unordered_map< ROUnIndex, boost::shared_ptr<ROExpr> >::iterator ROUVSubMapIter;
+*/
+
+typedef boost::unordered_map< ROUnIndex, boost::shared_ptr<ROExpr>, StrongTypeHash<ROUnIndex> > ROUVSubMap;
+typedef boost::unordered_map< ROUnIndex, boost::shared_ptr<ROExpr>, StrongTypeHash<ROUnIndex> >::iterator ROUVSubMapIter;
 
 
 /**

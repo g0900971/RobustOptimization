@@ -23,10 +23,15 @@
  */
 class ROException: public std::exception
 {
+public:
   virtual const char* what() const throw()
   {
     return "Exception happened";
   }
+    
+    
+    virtual ~ROException() throw()
+    {}
 };
 
 
@@ -39,10 +44,14 @@ class ROException: public std::exception
  */
 class ROExceptionTypeIncompatible: public std::exception
 {
+public:
   virtual const char* what() const throw()
   {
     return "Type Incompatible";
   }
+    
+    virtual ~ROExceptionTypeIncompatible() throw()
+    {}
 };
 
 
@@ -71,6 +80,10 @@ public:
 		  os << m_log;
 		  return os.str().c_str();
 	  }
+          
+      virtual ~ROExceptionIncompatibleExpr() throw()
+      {}
+        
 private:
 	std::string m_log;
 };
@@ -85,10 +98,14 @@ private:
  */
 class ROExceptionDivideZero: public std::exception
 {
+public:
   virtual const char* what() const throw()
   {
     return "Cannot divide by zero";
   }
+    
+    virtual ~ROExceptionDivideZero() throw()
+    {}
 };
 
 
@@ -101,10 +118,14 @@ class ROExceptionDivideZero: public std::exception
  */
 class ROExceptionOutRange: public std::exception
 {
+public:
 	  virtual const char* what() const throw()
 	  {
 	    return "Index Out of Range";
 	  }
+    
+    virtual ~ROExceptionOutRange() throw()
+    {}
 };
 
 
@@ -133,6 +154,10 @@ public:
 		  os << m_log;
 		  return os.str().c_str();
 	  }
+    
+    virtual ~ROExceptionNullPointer() throw()
+    {}
+    
 private:
 	std::string m_log;
 };
@@ -163,6 +188,9 @@ public:
 		  os << m_log;
 		  return os.str().c_str();
 	  }
+    
+    virtual ~ROExceptionDynamicCast() throw()
+    {}
 private:
 	std::string m_log;
 };
@@ -193,6 +221,9 @@ public:
 		  os << m_log;
 		  return os.str().c_str();
 	  }
+    
+    virtual ~ROExceptionModelUnsolve() throw()
+    {}
 private:
 	std::string m_log;
 };
@@ -223,6 +254,9 @@ public:
 		  os << m_log;
 		  return os.str().c_str();
 	  }
+    
+    virtual ~ROExceptionUnExpectCount() throw()
+    {}
 private:
 	std::string m_log;
 };

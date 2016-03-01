@@ -9,7 +9,7 @@ bool ROLib::init()
 
 void ROLib::destroy()
 {
-	ROVarImplManager::destroy();
-	ROUnImplManager::destroy();
+	//ROVarImplManager::destroy();
+	//ROUnImplManager::destroy();
 }
 

@@ -23,8 +23,17 @@
 #include <math.h>
 #include "roexceptions.h"
 
+
 BOOST_STRONG_TYPEDEF(int, ROVarIndex);
 BOOST_STRONG_TYPEDEF(int, ROUnIndex);
+
+template<class STRONG_TYPE>
+struct StrongTypeHash : std::unary_function<STRONG_TYPE, std::size_t>
+{
+	std::size_t operator() (STRONG_TYPE const& x) const {
+		return boost::hash<int>()(x.t);
+	}
+};
 
 typedef double ROKeyValue;
 
@@ -34,6 +43,7 @@ typedef double RONum;
 typedef std::pair<int, int> ROKeyIndex2;
 typedef std::pair<double, int> ROKeyValue2;
 
+/*
 typedef boost::unordered_map< ROVarIndex, ROKeyValue > ROVarMap;
 typedef boost::unordered_map< ROUnIndex, ROKeyValue > ROUnMap;
 
@@ -47,6 +57,23 @@ typedef boost::unordered_map< ROUnIndex, ROKeyValue >::iterator ROUnMapIter;
 
 typedef boost::unordered_map< ROKeyIndex2, ROKeyValue >::iterator ROQVarMapIter;
 typedef boost::unordered_map< ROUnIndex, ROKeyValue2 >::iterator ROExUnMapIter;
+typedef boost::unordered_map< ROKeyIndex2, ROKeyValue >::iterator ROUnVarMapIter;
+typedef boost::unordered_map< ROKeyIndex2, ROKeyValue2 >::iterator ROExUnVarMapIter;
+
+*/
+typedef boost::unordered_map< ROVarIndex, ROKeyValue, StrongTypeHash<ROVarIndex> > ROVarMap;
+typedef boost::unordered_map< ROUnIndex, ROKeyValue, StrongTypeHash<ROUnIndex> > ROUnMap;
+
+typedef boost::unordered_map< ROKeyIndex2, ROKeyValue > ROQVarMap;
+typedef boost::unordered_map< ROUnIndex, ROKeyValue2, StrongTypeHash<ROUnIndex> > ROExUnMap;
+typedef boost::unordered_map< ROKeyIndex2, ROKeyValue > ROUnVarMap;
+typedef boost::unordered_map< ROKeyIndex2, ROKeyValue2 > ROExUnVarMap;
+
+typedef boost::unordered_map< ROVarIndex, ROKeyValue, StrongTypeHash<ROVarIndex> >::iterator ROVarMapIter;
+typedef boost::unordered_map< ROUnIndex, ROKeyValue, StrongTypeHash<ROUnIndex> >::iterator ROUnMapIter;
+
+typedef boost::unordered_map< ROKeyIndex2, ROKeyValue >::iterator ROQVarMapIter;
+typedef boost::unordered_map< ROUnIndex, ROKeyValue2, StrongTypeHash<ROUnIndex> >::iterator ROExUnMapIter;
 typedef boost::unordered_map< ROKeyIndex2, ROKeyValue >::iterator ROUnVarMapIter;
 typedef boost::unordered_map< ROKeyIndex2, ROKeyValue2 >::iterator ROExUnVarMapIter;
 

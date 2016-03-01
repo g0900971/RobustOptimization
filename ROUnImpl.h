@@ -29,7 +29,7 @@ class ROUnImplManager
 {
 public:
     static ROUnImplManager& instance();
-	static void destroy();
+	//static void destroy();
     void add(const boost::shared_ptr<ROUnImpl> p_impl);
     void remove(const int p_id);
     

@@ -261,19 +261,6 @@ void ROModel::add(const ROObjective & p_obj)
 
 void ROModel::solve()
 {
-	// Check the expiration date
-  /*
-	time_t now = time(0);
-	tm* ptr_tm = localtime(&now);
-
-	if(( ptr_tm->tm_year + 1900) >= 2014)
-	{
-		std::cerr << "Expiration date pass!" << std::endl;
-		return;
-	}
-  */
-
-
 	std::list< boost::shared_ptr<ROConstraint> >::iterator iter;
 
 	for(iter = m_listConst.begin(); iter != m_listConst.end(); iter++)
