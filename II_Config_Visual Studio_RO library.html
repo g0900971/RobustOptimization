@@ -1,0 +1,164 @@
+<HTML>
+<HEAD>
+<TITLE> Configuration via ROC solver library for Robust Optimization C++</TITLE>
+ <STYLE>
+ <!--
+  H1 { font-family: "arial", "sans-serif"; color: #406ec1 }
+  H2 { font-family: "arial", "sans-serif"; color: #406ec1 }
+  H3 { font-family: "arial", "sans-serif"; color: #406ec1 }
+  H4 { font-family: "arial", "sans-serif"; color: #406ec1 }
+  H5 { font-family: "Comic sans MS", "sans-serif"; color: #FF00FF }
+  HR { color: #406ec1}
+  CODE { font-family: "courier", "courier-new", "serif"; font-size: 12pt}
+  BODY { font-family: "arial", "sans-serif" }
+  TH { background-color: #CCCCFF; font-family: "arial" }
+  TD { font-family: "arial", "sans-serif"; font-size=10pt }
+  P { font-family: "arial", "sans-serif" }
+  PRE { font-family: "arial", "sans-serif" }
+ -->
+ </STYLE>
+</HEAD>
+<BODY>
+
+<H2>Configuration via ROC solver library for Robust Optimization C++</H2>
+
+This file describes how to use Microsoft Visual Studio to:
+<UL><LI>
+   build and run the robust optimization C++ examples.
+</LI><LI>
+   create a C++ project and link the target with ROC static library <H5>(For more information on ROC.lib, please refer to I_Build_ROC_static library.html)</H5>.
+</LI></UL>
+
+<HR>
+<H3>Building Your Own Project which Links with ROC library</H3>
+
+<B>Note:</B><BR> The information below applies to the
+Visual C++ 2012 multi-threaded STL library.
+<P>
+<OL><!-- opening an ordered list -->
+<LI>
+Start Microsoft Visual Studio 2012.  <BR>
+</LI><P>
+<LI>
+The first step is to build the <CODE>test.sln</CODE> solution.<BR>
+From the <B>File</B> menu, select <B>New-></B>, and then <B>Project...</B
+>.<BR><P>
+The <B>New Project</B> dialog box appears.
+  <UL><!-- adding unordered list 1 within the ordered list at item 2 -->
+  <LI> In the <B>Project Types</B> pane, select <B>Visual C++ Projects</B>.
+  </LI>
+  <LI> In the <B>Templates</B> pane, select the <B>Win64 Project</B> icon.
+  </LI>
+  <LI> Fill in the project name (<CODE>test</CODE>).
+  </LI>
+  <LI> If necessary, correct the location of the project (to <CODE>&lt;MYAPPDIR&gt;</CODE>)
+  </LI>
+  <LI> Click <b>OK</b>
+  </LI>
+  </UL><!-- closing unordered list 1 --></LI>
+  <P>
+When the <B>Win64 Application Wizard</B> appears...
+  <UL><!-- adding unordered list 1 within the ordered list at item 3 -->
+  <LI>Click on <B>Application Settings</B>.
+  </LI>
+  <LI>Select <B>Console Application</B> as <B>Application type</B>.
+  </LI>
+  <LI>Make sure that <B>Empty project</B> is checked in <B>Additional Options</B>.
+  </LI>
+  <LI>Click <B>Finish</B>.
+  </LI><P>
+  </UL><!-- closing unordered list 1 -->
+This creates a solution, <CODE>test</CODE>, with a single project, <CODE>test</CODE>.
+You can see the contents of the solution by selecting <B>Solution Explorer</B> in
+the <B>View</B> menu. 
+</LI><P>
+<LI>
+Now you must add your source file to the project.  From the <B>Project</B> menu,
+choose <B>Add Existing Item...</B>
+  <UL><!-- adding unordered list 1 within the ordered list at item 2 -->
+  <LI>Move to the folder <CODE>&lt;MYAPPDIR&gt;</CODE> and select
+     <CODE>test.cpp</CODE> or <CODE>test.c</CODE>.
+  </LI>
+  <LI>Click <b>Open</b>.
+  </LI><P>
+  </UL><!-- closing unordered list 1 -->
+</LI><P>
+<LI>
+Next, you have to set some options so that the project knows where
+to find the CPLEX, Boost and ROC include files and the CPLEX and ROC
+libraries.<BR><P>
+From the <B>Project</B> menu, choose <B>Properties</B>.<BR>
+The <B>test Property Pages</B> dialog box appears.<P>
+In the <B>Configuration</B> drop-down list, select <B>Release</B>.<P>
+Select <B>C/C++</B> in the <B>Configuration Properties</B> tree.
+  <UL>
+  <LI>Select <B>General</B>:
+    <UL>
+    <LI>In the <B>Additional Include Directories</B> field, add the directories:
+      <UL>
+      <LI><CODE>&lt;CPLEXDIR&gt;\include</CODE>.
+      </LI>
+      <LI><CODE>&lt;CONCERTDIR&gt;\include</CODE>.
+      </LI>
+      <LI><CODE>&lt;BoostDir&gt;\include</CODE>.
+      </LI>
+      <LI><CODE>&lt;ROCDIR&gt;\include</CODE>.
+      </LI>
+      </UL><!--Closing unordered list 2-->
+    </LI>
+    <LI>For <B>Debug Information Format</B>, choose <B>Disabled (/Zd)</B>.
+    </LI>
+    </UL>
+  </LI><P>
+  <LI>Select <B>Preprocessor</B>:
+    <UL><!-- adding unordered list 2 within the ordered list -->
+    <LI>Add IL_STD, _USE_CPLEX_ to the <B>Preprocessor Definitions</B> field.
+ This defines the macro IL_STD and _USE_CPLEX_ which are needed to use the STL.
+    </LI>
+    </UL>
+  </LI><P>
+  <LI>Select <B>Code Generation</B>:
+    <UL><!-- adding unordered list 2 within the ordered list -->
+    <LI>Set <B>Runtime Library</B> to <B>Multi-threaded (/MT)</B>.<P>
+    </LI>
+    </UL><!--Closing unordered list 2-->
+  </LI>
+  </UL>
+Select <B>Linker</B> in the <B>Configuration Properties</B> tree.
+  <UL>
+  <LI>Select <B>Input</B> and then select <B>Additional Dependencies</B>.  Add the files:
+    <UL>
+    <LI>&lt;CPLEXDIR&gt;\lib\stat_mta\cplex122.lib</LI>
+    <LI>&lt;CPLEXDIR&gt;\lib\stat_mta\ilocplex.lib</LI>
+    <LI>&lt;CONCERTDIR&gt;\lib\stat_mta\concert.lib</LI>
+    <LI>&lt;ROCDIR&gt;\lib\roc.lib</LI>
+    </UL>
+  </LI>
+  </UL>
+Click <B>OK</B> to close the <B>test Property Pages</B> dialog box.
+</LI><P>
+<LI>
+Next, you have to set the default project configuration.<P>
+        
+From the <B>Build</B> menu, select <B>Configuration Manager...</B>
+  <UL>
+  <LI>Select <B>Release</B> in the <B>Active Solution Configuration</B> drop-down list.</LI>
+  <LI>Click <B>Close</B>.</LI><P>
+  </UL>
+</LI>
+<LI>
+Finally, to build the project, from the <B>Build</B> menu, select <B>Build Solution</B>
+</LI>
+</OL>
+<P>
+<HR>
+<B>Remark:</B>
+<HR>
+<P>
+Here, we need both the Boost and CPLEX library installed.
+<P>
+For more detailed information on the ROC library, user may refer 
+ROC C++ API Reference Manual.
+
+</BODY>
+</HTML>

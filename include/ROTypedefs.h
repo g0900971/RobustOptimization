@@ -11,7 +11,8 @@
 
 #include <boost/unordered_map.hpp>
 #include <boost/shared_ptr.hpp>
-#include <boost/strong_typedef.hpp>
+// #include <boost/strong_typedef.hpp>
+#include <boost/serialization/strong_typedef.hpp>
 
 #include <string>
 #include <utility>
