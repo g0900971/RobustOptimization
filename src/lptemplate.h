@@ -621,6 +621,26 @@ public:
 };
 
 template<>
+class LPUtils<CPLEX, CPLEX_VAR_TYPE> {
+public:
+    static CPLEX_VAR_TYPE ROVarType2LPType(const ROVarType type) {
+        switch (type) {
+            case EnumROVar:
+                return CPLEX_VAR_TYPE::Float;
+
+            case EnumROInt:
+                return CPLEX_VAR_TYPE::Int;
+
+            case EnumROBool:
+                return CPLEX_VAR_TYPE::Bool;
+
+            default:
+                return CPLEX_VAR_TYPE::Float;
+        }
+    }
+};
+
+template<>
 class Factory<CPLEX>
 {
 public:

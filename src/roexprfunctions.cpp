@@ -764,7 +764,7 @@ ROUnVarC RONorm2(const ROExprArray& p_exprArray)
 		ROVar var_X(RONInfinity, ROInfinity, "Norm2");
 		expr1 += var_X;
 
-		ROConstraintSet& uncertaintySet = RORotateSOC(p_exprArray, expr1);
+		ROConstraintSet uncertaintySet = RORotateSOC(p_exprArray, expr1);
 
 		ROUnVarC varC;
 		varC.setExpr(boost::shared_ptr<ROExpr>(new ROExpr(expr1)));
@@ -778,7 +778,7 @@ ROUnVarC RONorm2(const ROExprArray& p_exprArray)
 		ROUn un_X;
 		expr2 += un_X;
 
-		ROConstraintSet& uncertaintySet = RORotateSOC(p_exprArray, expr2);
+		ROConstraintSet uncertaintySet = RORotateSOC(p_exprArray, expr2);
 
 		ROUnVarC unC;
 		unC.setExpr(boost::shared_ptr<ROExpr>(new ROExpr(expr2)));
