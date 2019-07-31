@@ -62,7 +62,7 @@ int main(int argc, char**argv)
 
 	model.solve();
 
-	//model.exportModel(dataPath);
+	model.exportModel();
 
 	std::cout << model.getObjValue() << std::endl;
 

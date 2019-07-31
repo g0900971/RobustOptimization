@@ -6,26 +6,25 @@
 #  LIBDL_LIBRARIES   - List of libraries when using libdl.
 #  LIBDL_FOUND       - True if libdl found.
 
-
-IF (LIBDL_INCLUDE_DIR)
+if (LIBDL_INCLUDE_DIR)
     # Already in cache, be silent
-    SET(LIBDL_FIND_QUIETLY TRUE)
-ENDIF (LIBDL_INCLUDE_DIR)
+    set(LIBDL_FIND_QUIETLY TRUE)
+endif (LIBDL_INCLUDE_DIR)
 
-FIND_PATH(LIBDL_INCLUDE_DIR dlfcn.h)
+find_path(LIBDL_INCLUDE_DIR dlfcn.h)
 
-SET(LIBDL_NAMES dl libdl ltdl libltdl)
-FIND_LIBRARY(LIBDL_LIBRARY NAMES ${LIBDL_NAMES} )
+set(LIBDL_NAMES dl libdl ltdl libltdl)
+find_library(LIBDL_LIBRARY NAMES ${LIBDL_NAMES})
 
 # handle the QUIETLY and REQUIRED arguments and set LIBDL_FOUND to TRUE if
 # all listed variables are TRUE
-INCLUDE(FindPackageHandleStandardArgs)
-FIND_PACKAGE_HANDLE_STANDARD_ARGS(LibDL DEFAULT_MSG LIBDL_LIBRARY LIBDL_INCLUDE_DIR)
+include(FindPackageHandleStandardArgs)
+find_package_handle_standard_args(LibDL DEFAULT_MSG LIBDL_LIBRARY LIBDL_INCLUDE_DIR)
 
-IF(LIBDL_FOUND)
-    SET( LIBDL_LIBRARIES ${LIBDL_LIBRARY} )
-ELSE(LIBDL_FOUND)
-    SET( LIBDL_LIBRARIES )
-ENDIF(LIBDL_FOUND)
+if (LIBDL_FOUND)
+    set(LIBDL_LIBRARIES ${LIBDL_LIBRARY})
+else (LIBDL_FOUND)
+    set(LIBDL_LIBRARIES)
+endif (LIBDL_FOUND)
 
-MARK_AS_ADVANCED( LIBDL_LIBRARY LIBDL_INCLUDE_DIR )
+mark_as_advanced(LIBDL_LIBRARY LIBDL_INCLUDE_DIR)
